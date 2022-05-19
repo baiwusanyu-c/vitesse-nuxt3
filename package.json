@@ -6,8 +6,8 @@
     "dev": "nuxi dev",
     "start": "node .output/server/index.mjs",
     "init":"pnpm i",
-    "lint:ts": "eslint ./src --ext .vue,.js,.ts,.jsx,.tsx",
-    "lint:ts-fix": "eslint --fix ./",
+    "lint:ts": "eslint .",
+    "lint:ts-fix": "eslint .",
     "prepare": "husky install"
   },
   "dependencies": {
