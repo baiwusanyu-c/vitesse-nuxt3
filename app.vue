@@ -1,10 +1,10 @@
 <script setup>
-    // element plus 必须在入口组件注入这个 ID_INJECTION_KEY
-    import { ID_INJECTION_KEY } from 'element-plus'
-    provide(ID_INJECTION_KEY, {
-        prefix: 100,
-        current: 0,
-    })
+// element plus 必须在入口组件注入这个 ID_INJECTION_KEY
+import { ID_INJECTION_KEY } from 'element-plus'
+provide(ID_INJECTION_KEY, {
+  prefix: 100,
+  current: 0,
+})
 useHead({
   title: 'Vitesse Nuxt 3',
   link: [
@@ -13,16 +13,13 @@ useHead({
     },
   ],
 })
-
 </script>
 
 <template>
   <div>
-  <NuxtLayout>
-
+    <NuxtLayout>
       <NuxtPage />
-
-  </NuxtLayout>
+    </NuxtLayout>
   </div>
 </template>
 

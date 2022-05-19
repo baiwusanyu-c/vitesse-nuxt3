@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from 'nuxt'
-const lifecycle = process.env.npm_lifecycle_event;
+const lifecycle = process.env.npm_lifecycle_event
 export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
@@ -8,11 +8,11 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
   ],
   // css
-  css: ["~/assets/style/index.scss"],
+  css: ['~/assets/style/index.scss'],
 
   // build
   build: {
-    transpile: lifecycle === "build" ? ["element-plus"] : [],
+    transpile: lifecycle === 'build' ? ['element-plus'] : [],
   },
   experimental: {
     reactivityTransform: true,

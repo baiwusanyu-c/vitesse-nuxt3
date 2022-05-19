@@ -7,7 +7,7 @@
     "start": "node .output/server/index.mjs",
     "init": "pnpm i",
     "lint:ts": "eslint .",
-    "lint:ts-fix": "eslint .",
+    "lint:ts-fix": "eslint . --fix",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -35,7 +35,7 @@
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,md,json}": [
-      "eslint --fix"
+      "eslint . --fix"
     ]
   }
 }

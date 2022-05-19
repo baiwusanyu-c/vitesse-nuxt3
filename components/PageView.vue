@@ -1,19 +1,19 @@
 <script setup lang="ts">
-  import {
-    ElIcon,
-    ElButton,
-    ElDropdown,
-    ElDropdownMenu,
-    ElDropdownItem,
-    ElConfigProvider,
-    ElDatePicker,
-    ElMessage,
-  } from "element-plus                      ";
-  import zhCn from "element-plus/es/locale/lang/zh-cn";
-  import { Grape, IceCream, IceDrink, ArrowDown } from "@element-plus/icons-vue";
-  const timeValue = ref("");
-  const hello = () => ElMessage.info("hello world");
-  const helloSuccess = () => ElMessage.success("hello world");
+import {
+  ElButton,
+  ElConfigProvider,
+  ElDatePicker,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
+  ElIcon,
+  ElMessage,
+} from 'element-plus'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import { ArrowDown, Grape, IceCream, IceDrink } from '@element-plus/icons-vue'
+const timeValue = ref('')
+const hello = () => ElMessage.info('hello world')
+const helloSuccess = () => ElMessage.success('hello world')
 const { data } = await useFetch('/api/pageview')
 
 const time = useTimeAgo(computed(() => data.value.startAt))
@@ -26,7 +26,9 @@ const time = useTimeAgo(computed(() => data.value.startAt))
     <span text-gray>{{ time }}</span>
     <el-dropdown class="m-4" type="primary">
       <el-button type="primary">
-        Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
+        Dropdown List<el-icon class="el-icon--right">
+          <arrow-down />
+        </el-icon>
       </el-button>
       <template #dropdown>
         <el-dropdown-menu>
@@ -39,17 +41,23 @@ const time = useTimeAgo(computed(() => data.value.startAt))
       </template>
     </el-dropdown>
 
-    <br />
+    <br>
 
-    <el-button class="m-4" @click="hello">Hello</el-button>
-    <el-button class="m-4" type="primary" @click="hello">Hello</el-button>
-    <el-button class="m-4" type="success" @click="helloSuccess">Hello</el-button>
+    <el-button class="m-4" @click="hello">
+      Hello
+    </el-button>
+    <el-button class="m-4" type="primary" @click="hello">
+      Hello
+    </el-button>
+    <el-button class="m-4" type="success" @click="helloSuccess">
+      Hello
+    </el-button>
 
-    <br />
+    <br>
 
     <Counter class="m-4" />
 
-    <br />
+    <br>
 
     <el-icon class="cursor-pointer">
       <Grape />
@@ -61,15 +69,15 @@ const time = useTimeAgo(computed(() => data.value.startAt))
       <IceDrink />
     </el-icon>
 
-    <br />
+    <br>
 
     <client-only>
       <el-config-provider :locale="zhCn">
         <el-date-picker
-                v-model="timeValue"
-                type="date"
-                placeholder="请选择日期"
-        ></el-date-picker>
+          v-model="timeValue"
+          type="date"
+          placeholder="请选择日期"
+        />
       </el-config-provider>
     </client-only>
   </div>
