@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import test from './components/test.vue'
 const route = useRoute()
 const user = useUserStore()
 const name = route.params.id
@@ -8,7 +9,8 @@ watchEffect(() => {
 })
 
 definePageMeta({
-  layout: 'home',// 定义layout
+  // 定义layout
+  layout: 'home',
 })
 </script>
 
@@ -20,6 +22,7 @@ definePageMeta({
     </h3>
     <div text-xl>
       {{ name }}!
+      <test />
     </div>
 
     <template v-if="user.otherNames.length">
