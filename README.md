@@ -81,7 +81,9 @@ pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
 
 
 scss  ⚡  
-husky ing**************🔥  
-commitlint ing**************🔥  
+husky ⚡
+commitlint ⚡
 element plus
 be-ui
+icon 插件是否生效
+fetch 封装

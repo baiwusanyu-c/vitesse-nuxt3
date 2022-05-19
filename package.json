@@ -5,13 +5,14 @@
     "build": "nuxi build",
     "dev": "nuxi dev",
     "start": "node .output/server/index.mjs",
-    "init":"pnpm i",
+    "init": "pnpm i",
     "lint:ts": "eslint .",
     "lint:ts-fix": "eslint .",
     "prepare": "husky install"
   },
   "dependencies": {
-    "vue": "^3.2.33"
+    "element-plus": "^2.2.0",
+    "vue": "3.2.33"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.23.0",
