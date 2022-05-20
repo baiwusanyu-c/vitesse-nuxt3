@@ -11,6 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.5",
     "element-plus": "^2.2.0",
     "vue": "3.2.33"
   },

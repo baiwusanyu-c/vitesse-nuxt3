@@ -14,33 +14,58 @@ import { ArrowDown, Grape, IceCream, IceDrink } from '@element-plus/icons-vue'
 const timeValue = ref('')
 const hello = () => ElMessage.info('hello world')
 const helloSuccess = () => ElMessage.success('hello world')
+
 const { data } = await useFetch('/api/pageview')
 
 const time = useTimeAgo(computed(() => data.value.startAt))
+
+export interface IPageParam {
+  page_num?: number
+  page_size?: number
+
+  currentPage?: number
+  pageNum?: number
+  pageSize?: number
+  total?: number
+}
+const pageParams = ref<IPageParam>({
+  currentPage: 1,
+  pageSize: 10,
+  total: 0,
+})
+const { data: res, pending, error, refresh } = await useFetch(
+  'http://124.71.132.90:9527/ussa/public/opinion/list',
+  {
+    method: 'post',
+    params: pageParams.value,
+  },
+)
 </script>
 
 <template>
   <div text-gray:80>
+    {{ res }}
     <span font-500 text-gray>{{ data.pageview }}</span>
     page views since
     <span text-gray>{{ time }}</span>
-    <el-dropdown class="m-4" type="primary">
-      <el-button type="primary">
-        Dropdown List<el-icon class="el-icon--right">
-          <arrow-down />
-        </el-icon>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>Action 1</el-dropdown-item>
-          <el-dropdown-item>Action 2</el-dropdown-item>
-          <el-dropdown-item>Action 3</el-dropdown-item>
-          <el-dropdown-item>Action 4</el-dropdown-item>
-          <el-dropdown-item>Action 5</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-
+    <client-only>
+      <el-dropdown class="m-4" type="primary">
+        <el-button type="primary">
+          Dropdown List<el-icon class="el-icon--right">
+            <arrow-down />
+          </el-icon>
+        </el-button>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>Action 1</el-dropdown-item>
+            <el-dropdown-item>Action 2</el-dropdown-item>
+            <el-dropdown-item>Action 3</el-dropdown-item>
+            <el-dropdown-item>Action 4</el-dropdown-item>
+            <el-dropdown-item>Action 5</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </client-only>
     <br>
 
     <el-button class="m-4" @click="hello">
@@ -54,8 +79,6 @@ const time = useTimeAgo(computed(() => data.value.startAt))
     </el-button>
 
     <br>
-
-    <Counter class="m-4" />
 
     <br>
 
@@ -71,14 +94,14 @@ const time = useTimeAgo(computed(() => data.value.startAt))
 
     <br>
 
-    <client-only>
-      <el-config-provider :locale="zhCn">
+    <el-config-provider :locale="zhCn">
+      <client-only>
         <el-date-picker
           v-model="timeValue"
           type="date"
           placeholder="请选择日期"
         />
-      </el-config-provider>
-    </client-only>
+      </client-only>
+    </el-config-provider>
   </div>
 </template>

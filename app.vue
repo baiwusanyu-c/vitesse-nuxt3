@@ -24,7 +24,6 @@ useHead({
 </template>
 
 <style>
-/*@import "~element-plus/theme-chalk/index.css";*/
 html, body , #__nuxt{
   height: 100vh;
   margin: 0;

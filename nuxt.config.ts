@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
   ],
   // css
-  css: ['~/assets/style/index.scss'],
+  css: ['~/assets/style/index.scss', '~/components/be-ui/style/index.scss'],
 
   // build
   build: {
