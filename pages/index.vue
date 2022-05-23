@@ -1,8 +1,8 @@
 <script setup lang="ts">
 definePageMeta({
   // 定义layout
-  layout: 'home',
-})
+  layout: "home",
+});
 </script>
 
 <template>

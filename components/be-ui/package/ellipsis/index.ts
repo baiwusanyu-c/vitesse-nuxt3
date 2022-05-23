@@ -1,9 +1,7 @@
-import { withInstall } from '../../utils/with-install'
+import { withInstall } from "../../utils/with-install";
 
-import beEllipsis from './src/be-ellipsis.vue'
-const BeEllipsis = withInstall(beEllipsis)
+import beEllipsis from "./src/be-ellipsis.vue";
+const BeEllipsis = withInstall(beEllipsis);
 
-export {
-  BeEllipsis,
-}
-export default BeEllipsis
+export { BeEllipsis };
+export default BeEllipsis;

@@ -8,46 +8,48 @@ import {
   ElDropdownMenu,
   ElIcon,
   ElMessage,
-} from 'element-plus'
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import { ArrowDown, Grape, IceCream, IceDrink } from '@element-plus/icons-vue'
-const timeValue = ref('')
-const hello = () => ElMessage.info('hello world')
-const helloSuccess = () => ElMessage.success('hello world')
+} from "element-plus";
+import zhCn from "element-plus/es/locale/lang/zh-cn";
+import { ArrowDown, Grape, IceCream, IceDrink } from "@element-plus/icons-vue";
+const timeValue = ref("");
+const hello = () => ElMessage.info("hello world");
+const helloSuccess = () => ElMessage.success("hello world");
 
-const { data } = await useFetch('/api/pageview')
+const { data } = await useFetch("/api/pageview");
 
-const time = useTimeAgo(computed(() => data.value.startAt))
+const time = useTimeAgo(computed(() => data.value.startAt));
 
 export interface IPageParam {
-  page_num?: number
-  page_size?: number
+  page_num?: number;
+  page_size?: number;
 
-  currentPage?: number
-  pageNum?: number
-  pageSize?: number
-  total?: number
+  currentPage?: number;
+  pageNum?: number;
+  pageSize?: number;
+  total?: number;
 }
 const pageParams = ref<IPageParam>({
   currentPage: 1,
   pageSize: 10,
   total: 0,
-})
-const { data: res, pending, error, refresh } = await useFetch(
-  'http://124.71.132.90:9527/ussa/public/opinion/list',
-  {
-    method: 'post',
-    params: pageParams.value,
-  },
-)
+});
+const {
+  data: res,
+  pending,
+  error,
+  refresh,
+} = await useFetch("http://124.71.132.90:9527/ussa/public/opinion/list", {
+  method: "post",
+  params: pageParams.value,
+});
 </script>
 
 <template>
-  <div text-gray:80>
+  <div >
     {{ res }}
-    <span font-500 text-gray>{{ data.pageview }}</span>
+    <span >{{ data.pageview }}</span>
     page views since
-    <span text-gray>{{ time }}</span>
+    <span>{{ time }}</span>
     <client-only>
       <el-dropdown class="m-4" type="primary">
         <el-button type="primary">
@@ -66,21 +68,17 @@ const { data: res, pending, error, refresh } = await useFetch(
         </template>
       </el-dropdown>
     </client-only>
-    <br>
+    <br />
 
-    <el-button class="m-4" @click="hello">
-      Hello
-    </el-button>
-    <el-button class="m-4" type="primary" @click="hello">
-      Hello
-    </el-button>
+    <el-button class="m-4" @click="hello"> Hello </el-button>
+    <el-button class="m-4" type="primary" @click="hello"> Hello </el-button>
     <el-button class="m-4" type="success" @click="helloSuccess">
       Hello
     </el-button>
 
-    <br>
+    <br />
 
-    <br>
+    <br />
 
     <el-icon class="cursor-pointer">
       <Grape />
@@ -92,7 +90,7 @@ const { data: res, pending, error, refresh } = await useFetch(
       <IceDrink />
     </el-icon>
 
-    <br>
+    <br />
 
     <el-config-provider :locale="zhCn">
       <client-only>

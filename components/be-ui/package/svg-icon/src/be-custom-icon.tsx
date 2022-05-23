@@ -1,8 +1,8 @@
-import { computed, useAttrs } from 'vue'
+import { computed, useAttrs } from "vue";
 
 export const createCustom = (template: string): object => {
   return {
-    name: 'BeCustomIcon',
+    name: "BeCustomIcon",
     props: {
       /**
        * 是否旋转
@@ -13,18 +13,18 @@ export const createCustom = (template: string): object => {
       },
     },
     setup(props: any) {
-      const attrs = useAttrs()
-      const customClass = props.customClass ? props.customClass : ''
+      const attrs = useAttrs();
+      const customClass = props.customClass ? props.customClass : "";
       const spinClass = computed(() =>
-        props.spin ? `be-icon__spin ${customClass}` : `${customClass}`,
-      )
+        props.spin ? `be-icon__spin ${customClass}` : `${customClass}`
+      );
       return () => {
         return (
           <div className={`be-icon ${spinClass.value}`} {...attrs}>
             {template}
           </div>
-        )
-      }
+        );
+      };
     },
-  }
-}
+  };
+};

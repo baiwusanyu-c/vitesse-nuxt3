@@ -1,29 +1,25 @@
-import { defineNuxtConfig } from 'nuxt'
-import { transformScript } from 'vite-plugin-svg-transform-script'
-const lifecycle = process.env.npm_lifecycle_event
+import { defineNuxtConfig } from "nuxt";
+import { transformScript } from "vite-plugin-svg-transform-script";
+const lifecycle = process.env.npm_lifecycle_event;
 export default defineNuxtConfig({
   modules: [
-    '@vueuse/nuxt',
-    '@unocss/nuxt',
-    '@pinia/nuxt',
-    '@nuxtjs/color-mode',
+    "@vueuse/nuxt",
+    "@pinia/nuxt",
+    "@nuxtjs/color-mode",
   ],
   // css
-  css: ['~/assets/style/index.scss', '~/components/be-ui/style/index.scss'],
+  css: ["~/assets/style/index.scss", "~/components/be-ui/style/index.scss"],
 
   // build
   build: {
-    transpile: lifecycle === 'build' ? ['element-plus'] : [],
+    transpile: lifecycle === "build" ? ["element-plus"] : [],
   },
   experimental: {
     reactivityTransform: true,
     // viteNode: true,
   },
-  unocss: {
-    preflight: true,
-  },
   colorMode: {
-    classSuffix: '',
+    classSuffix: "",
   },
   typescript: {
     strict: true,
@@ -33,12 +29,12 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       transformScript({
-        input: './icon/',
-        output: './utils/',
-        name: 'svg-dict',
-        type: 'ts',
-        format: 'default',
+        input: "./icon/",
+        output: "./utils/",
+        name: "svg-dict",
+        type: "ts",
+        format: "default",
       }),
     ],
   },
-})
+});

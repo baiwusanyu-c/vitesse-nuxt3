@@ -5,8 +5,8 @@
  * @create (xuqianqian 2021/4/16)
  * @update (czh 2021/4/16)
  */
-import type { DirectiveBinding, ObjectDirective } from 'vue'
-import { IEvent } from '../type/types'
+import { IEvent } from "../type/types";
+import type { DirectiveBinding, ObjectDirective } from "vue";
 
 export const dragDirective: ObjectDirective = {
   beforeMount(el: HTMLElement, binding: DirectiveBinding): void {
@@ -102,4 +102,4 @@ export const dragDirective: ObjectDirective = {
       }
     } */
   },
-}
+};

@@ -1,20 +1,12 @@
-import type {
-  ComponentInternalInstance,
-  VNode,
-} from 'vue'
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  ref,
-} from 'vue'
-import { BeIcon } from '../../svg-icon'
-import type { IButtonInst } from './be-button-type'
+import { computed, defineComponent, getCurrentInstance, ref } from "vue";
+import { BeIcon } from "../../svg-icon";
+import type { ComponentInternalInstance, VNode } from "vue";
+import type { IButtonInst } from "./be-button-type";
 function useComponentId(Instance: ComponentInternalInstance) {
-  return Instance.uid
+  return Instance.uid;
 }
 export default defineComponent({
-  name: 'BeButton',
+  name: "BeButton",
   components: {
     BeIcon,
   },
@@ -25,7 +17,7 @@ export default defineComponent({
      */
     size: {
       type: String,
-      default: 'medium',
+      default: "medium",
     },
     /**
      * 按钮圆角
@@ -40,7 +32,7 @@ export default defineComponent({
      */
     type: {
       type: String,
-      default: 'default',
+      default: "default",
     },
 
     /**
@@ -69,7 +61,7 @@ export default defineComponent({
      */
     customClass: {
       type: String,
-      default: '',
+      default: "",
     },
     /**
      * flex显示
@@ -90,14 +82,14 @@ export default defineComponent({
      */
     prevIcon: {
       type: String,
-      default: '',
+      default: "",
     },
     /**
      * 后置图标 （完成）
      */
     nextIcon: {
       type: String,
-      default: '',
+      default: "",
     },
 
     /**
@@ -109,66 +101,60 @@ export default defineComponent({
     },
   },
   setup(props, ctx) {
-    const internalInstance = getCurrentInstance() as IButtonInst
-    const uid = ref<number>(useComponentId(internalInstance))
+    const internalInstance = getCurrentInstance() as IButtonInst;
+    const uid = ref<number>(useComponentId(internalInstance));
     const btnStyle = computed(() => {
       return {
-        'background': props.ghost ? 'transparent !important' : '',
-        'cursor': props.disabled ? 'not-allowed' : 'pointer',
-        'border-style': props.dashed ? 'dashed' : 'solid',
-        'border-radius': `${props.round}px`,
-        'display': props.flex ? 'flex' : '',
-      }
-    })
+        background: props.ghost ? "transparent !important" : "",
+        cursor: props.disabled ? "not-allowed" : "pointer",
+        "border-style": props.dashed ? "dashed" : "solid",
+        "border-radius": `${props.round}px`,
+        display: props.flex ? "flex" : "",
+      };
+    });
     const borderStyle = computed(() => {
-      return props.bordered ? '__border' : ''
-    })
+      return props.bordered ? "__border" : "";
+    });
     const disabledStyle = computed(() => {
-      return props.disabled || props.loading ? 'be-button__inner__disabled' : ''
-    })
+      return props.disabled || props.loading
+        ? "be-button__inner__disabled"
+        : "";
+    });
     const prevIconStyle = computed(() => {
-      if (props.loading)
-        return 'loading'
+      if (props.loading) return "loading";
 
-      if (props.prevIcon)
-        return props.prevIcon
-      else
-        return ''
-    })
+      if (props.prevIcon) return props.prevIcon;
+      else return "";
+    });
     const nextIconStyle = computed(() => {
       if (props.nextIcon) {
-        if (props.loading)
-          return ''
-        else
-          return props.nextIcon
+        if (props.loading) return "";
+        else return props.nextIcon;
+      } else {
+        return "";
       }
-      else {
-        return ''
-      }
-    })
-    const prevIconRender = (): VNode | '' => {
-      return props.prevIcon || props.loading
-        ? (
+    });
+    const prevIconRender = (): VNode | "" => {
+      return props.prevIcon || props.loading ? (
         <be-icon
           icon={prevIconStyle.value}
           spin={props.loading}
-          custom-class={`be-button--prevIcon be-button--prevIcon__${props.type}`}></be-icon>
-          )
-        : (
-            ''
-          )
-    }
-    const nextIconRender = (): VNode | '' => {
-      return !props.nextIcon
-        ? (
-            ''
-          )
-        : (
+          custom-class={`be-button--prevIcon be-button--prevIcon__${props.type}`}
+        ></be-icon>
+      ) : (
+        ""
+      );
+    };
+    const nextIconRender = (): VNode | "" => {
+      return !props.nextIcon ? (
+        ""
+      ) : (
         <be-icon
           icon={nextIconStyle.value}
-          custom-class={`be-button--nextIcon be-button--nextIcon__${props.type}`}></be-icon>
-          )
-    }
+          custom-class={`be-button--nextIcon be-button--nextIcon__${props.type}`}
+        ></be-icon>
+      );
+    };
     return () => {
       return (
         <button
@@ -176,20 +162,23 @@ export default defineComponent({
           {...ctx.attrs}
           style={btnStyle.value}
           id={`be_button_${uid.value}`}
-          class={`
+          className={`
                     be-button 
                     be-button__inner ${disabledStyle.value} 
                     be-button__${props.size} 
                     be-button__${props.type}${borderStyle.value} 
                     ${props.customClass}`}
-          disabled={props.disabled || props.loading}>
-          <div class="be-button--body" style="margin: 0 auto;display: flex">
+          disabled={props.disabled || props.loading}
+        >
+          <div className="be-button--body" style="margin: 0 auto;display: flex">
             {prevIconRender()}
-            <div class="be-button--slot">{ctx.slots.default && ctx.slots.default()}</div>
+            <div className="be-button--slot">
+              {ctx.slots.default && ctx.slots.default()}
+            </div>
             {nextIconRender()}
           </div>
         </button>
-      )
-    }
+      );
+    };
   },
-})
+});

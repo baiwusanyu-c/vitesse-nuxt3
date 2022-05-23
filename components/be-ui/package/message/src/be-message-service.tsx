@@ -4,28 +4,32 @@
  * @author czh
  * @update (czh 2021/11/12)
  */
-import { BeNotify, resetNotifyInstMap } from '../../notification/src/be-notification-service'
-import type { INotfiyInst } from '../../notification/src/be-notification-type'
-import type { IMessage, IMsgInst } from './be-message-type'
+import {
+  BeNotify,
+  resetNotifyInstMap,
+} from "../../notification/src/be-notification-service";
+import type { INotfiyInst } from "../../notification/src/be-notification-type";
+import type { IMessage, IMsgInst } from "./be-message-type";
 
 const createMessage = function (options: IMessage): IMsgInst {
   const option: IMessage = {
-    titles: options.titles || 'message',
-    msgType: options.msgType || 'info',
+    titles: options.titles || "message",
+    msgType: options.msgType || "info",
     offsetTop: options.offsetTop,
     close: options.close || false,
-    placement: 'topCenter',
-    compType: 'message',
+    placement: "topCenter",
+    compType: "message",
     customClass: options.customClass,
-    duration: options.duration || options.duration === null ? options.duration : 4500,
+    duration:
+      options.duration || options.duration === null ? options.duration : 4500,
     key: options.key,
     onClose: options.onClose,
     iconPreRender: options.iconPreRender,
     closeRender: options.closeRender,
 
     loading: options.loading,
-  }
-  const notifyInst: INotfiyInst = BeNotify(option)
+  };
+  const notifyInst: INotfiyInst = BeNotify(option);
   return {
     message: notifyInst.notify,
     close: notifyInst.close,
@@ -35,8 +39,8 @@ const createMessage = function (options: IMessage): IMsgInst {
         msgType: options.msgType,
         offsetTop: options.offsetTop,
         close: options.close,
-        placement: 'topCenter',
-        compType: 'message',
+        placement: "topCenter",
+        compType: "message",
         customClass: options.customClass,
         duration: options.duration,
         key: options.key,
@@ -44,14 +48,14 @@ const createMessage = function (options: IMessage): IMsgInst {
         iconPreRender: options.iconPreRender,
         closeRender: options.closeRender,
         loading: options.loading,
-      }
-      return BeNotify(option)
+      };
+      return BeNotify(option);
     },
-  }
-}
+  };
+};
 export const resetMessageInstMap = (): void => {
-  resetNotifyInstMap()
-}
+  resetNotifyInstMap();
+};
 export const BeMessage = (options: IMessage): object => {
-  return createMessage(options)
-}
+  return createMessage(options);
+};

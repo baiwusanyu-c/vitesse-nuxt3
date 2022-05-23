@@ -2,3 +2,5 @@ dist
 node_modules
 .output
 .nuxt
+/utils/svg-dict.ts
+package.json

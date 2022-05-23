@@ -1,92 +1,91 @@
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import { BeIcon } from '../../svg-icon'
+import { defineComponent, reactive } from "vue";
+import { BeIcon } from "../../svg-icon";
 
 export default defineComponent({
-  name: 'BeTag',
+  name: "BeTag",
   components: { BeIcon },
   props: {
     /**
-       * 尺寸
-       * @values 'mini' | 'medium' | 'large'
-       */
+     * 尺寸
+     * @values 'mini' | 'medium' | 'large'
+     */
     size: {
       type: String,
-      default: 'medium',
+      default: "medium",
     },
     /**
-       * 类型
-       * @values 'default' | 'primary' | 'success' | 'info' | 'warning' | 'error'
-       */
+     * 类型
+     * @values 'default' | 'primary' | 'success' | 'info' | 'warning' | 'error'
+     */
     type: {
       type: String,
-      default: 'default',
+      default: "default",
     },
     /**
-       * 禁用
-       */
+     * 禁用
+     */
     disabled: {
       type: Boolean,
       default: false,
     },
 
     /**
-       * 圆角
-       */
+     * 圆角
+     */
     round: {
       type: [Number, String],
       default: 0,
     },
     /**
-       * 可关闭
-       */
+     * 可关闭
+     */
     isClose: {
       type: Boolean,
       default: false,
     },
     /**
-       * 配置，背景色，边框色，文字色
-       */
+     * 配置，背景色，边框色，文字色
+     */
     option: {
       type: Object,
       default: () => {
-        return {}
+        return {};
       },
     },
     /**
-       * 自定义主题样式类 (完成)
-       */
+     * 自定义主题样式类 (完成)
+     */
     customClass: {
       type: String,
-      default: '',
+      default: "",
     },
   },
-  emits: ['close'],
+  emits: ["close"],
   setup(props, ctx) {
     /**
-       * 关闭回调
-       * @param {Event} event - 事件对象
-       */
+     * 关闭回调
+     * @param {Event} event - 事件对象
+     */
     const handleClose = (event: Event) => {
-      event.stopPropagation()
-      if (props.disabled)
-        return
+      event.stopPropagation();
+      if (props.disabled) return;
 
-      ctx.emit('close', event)
-    }
-    let styleOption = reactive({})
+      ctx.emit("close", event);
+    };
+    let styleOption = reactive({});
     styleOption = {
       borderRadius: `${props.round}px`,
-      backgroundColor: props.option?.backgroundColor || '',
-      border: props.option?.border || '',
-      color: props.option?.color || '',
-    }
+      backgroundColor: props.option?.backgroundColor || "",
+      border: props.option?.border || "",
+      color: props.option?.color || "",
+    };
     return {
       handleClose,
       styleOption,
-    }
+    };
   },
-})
+});
 </script>
 
 <template>
@@ -111,7 +110,7 @@ export default defineComponent({
       icon="deleteIc"
       class="be-tag_close"
       :style="{ fill: styleOption?.color }"
-      @click="$event => handleClose($event)"
+      @click="($event) => handleClose($event)"
     />
   </div>
 </template>

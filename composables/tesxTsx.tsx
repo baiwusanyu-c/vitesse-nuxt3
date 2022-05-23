@@ -1,11 +1,11 @@
 /*
-* @tesxTsx.ts
-* @deprecated 
-* @author czh
-* @update (czh 2022/5/23)
-*/
-import { BeMsg } from '../components/be-ui/index'
-export default ()=>{
+ * @tesxTsx.ts
+ * @deprecated
+ * @author czh
+ * @update (czh 2022/5/23)
+ */
+import { BeMsg } from "../components/be-ui/index";
+export default () => {
   /**
    * 消息提示弹窗
    * @param title
@@ -17,17 +17,17 @@ export default ()=>{
       titles: title,
       customClass: className,
       bodyRender: () => {
-        return <p>{content}</p>
+        return <p>{content}</p>;
       },
       footerRender() {
-        return <div></div>
+        return <div></div>;
       },
       iconPreRender() {
-        return <div></div>
+        return <div></div>;
       },
-    })
-  }
+    });
+  };
   return {
-    msgBox
-  }
-}
+    msgBox,
+  };
+};

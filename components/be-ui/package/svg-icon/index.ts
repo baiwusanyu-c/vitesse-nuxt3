@@ -1,28 +1,26 @@
-import type { App } from 'vue'
-import { defineComponent } from 'vue'
-import { withInstall } from '../../utils/with-install'
-import SvgIcon from './src/be-icon.vue'
-import { createCustom } from './src/be-custom-icon'
- import { SvgDom } from '../../utils/create-svg'
+import { defineComponent } from "vue";
+import { withInstall } from "../../utils/with-install";
+import { SvgDom } from "../../utils/create-svg";
+import SvgIcon from "./src/be-icon.vue";
+import { createCustom } from "./src/be-custom-icon";
+import type { App } from "vue";
 
 /**
  * 初始化图标，生成svgDom
  */
- const initIcon = (): void => {
-  if (!import.meta.env.SSR) {
-    new SvgDom()
-  }
- }
- initIcon()
+const initIcon = (): void => {
+  if (!import.meta.env.SSR) new SvgDom();
+};
+initIcon();
 
 /**
  * 组件装载方法
  * @param app
  */
-const BeIcon = withInstall(SvgIcon)
+const BeIcon = withInstall(SvgIcon);
 
 interface template {
-  template?: string
+  template?: string;
 }
 
 /**
@@ -32,43 +30,41 @@ interface template {
  * @constructor
  */
 BeIcon.BeIconComponets = (name: string, option: template): object | void => {
-  const tempStr: string | undefined = option.template
+  const tempStr: string | undefined = option.template;
   if (!tempStr) {
-    console.error('The ‘template’ field in the parameter ‘option’ is required')
-    return
+    console.error("The ‘template’ field in the parameter ‘option’ is required");
+    return;
   }
   // 根据模板参数，创建组件对象
-  const compInstance: object = defineComponent(createCustom(tempStr))
-  ;(compInstance as any).install = (app: App): void => {
-    app.component(name, compInstance)
-  }
-  return compInstance
-}
+  const compInstance: object = defineComponent(createCustom(tempStr));
+  (compInstance as any).install = (app: App): void => {
+    app.component(name, compInstance);
+  };
+  return compInstance;
+};
 
 /**
  * 远程调用iconfont方法
  * @param url - 路径地址
  */
-const customCache = new Set()
+const customCache = new Set();
 BeIcon.createFromIconfontCN = (url: string): void => {
   if (
-    typeof document !== 'undefined'
-    && typeof window !== 'undefined'
-    && typeof document.createElement === 'function'
-    && typeof url === 'string'
-    && url.length
-    && !customCache.has(url)
+    typeof document !== "undefined" &&
+    typeof window !== "undefined" &&
+    typeof document.createElement === "function" &&
+    typeof url === "string" &&
+    url.length &&
+    !customCache.has(url)
   ) {
-    const script = document.createElement('script')
-    script.setAttribute('src', url)
-    script.setAttribute('data-namespace', url)
-    customCache.add(url)
-    document.body.appendChild(script)
+    const script = document.createElement("script");
+    script.setAttribute("src", url);
+    script.setAttribute("data-namespace", url);
+    customCache.add(url);
+    document.body.appendChild(script);
   }
-}
-export {
-  BeIcon,
-}
-export default BeIcon
-export const BeIconComponets = BeIcon.BeIconComponets
-export const createFromIconfontCN = BeIcon.createFromIconfontCN
+};
+export { BeIcon };
+export default BeIcon;
+export const BeIconComponets = BeIcon.BeIconComponets;
+export const createFromIconfontCN = BeIcon.createFromIconfontCN;

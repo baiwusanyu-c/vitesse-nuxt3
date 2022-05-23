@@ -4,38 +4,38 @@
  * @author czh
  * @update (czh 2021/11/12)
  */
-import type { ComponentInternalInstance } from 'vue'
+import type { ComponentInternalInstance } from "vue";
 
 export interface IMessage {
-  titles?: string
-  customClass?: string
-  msgType?: string
-  offsetTop?: number
-  placement?: string
-  duration?: number
-  key?: string
-  onClose?: () => void
-  iconPreRender: any
-  closeRender: any
-  compType: string
-  close?: boolean
-  loading?: boolean
+  titles?: string;
+  customClass?: string;
+  msgType?: string;
+  offsetTop?: number;
+  placement?: string;
+  duration?: number;
+  key?: string;
+  onClose?: () => void;
+  iconPreRender: any;
+  closeRender: any;
+  compType: string;
+  close?: boolean;
+  loading?: boolean;
 }
 
 export interface ItInstanceMap {
-  topLeft?: Array<any>
-  topRight?: Array<any>
-  bottomLeft?: Array<any>
-  bottomRight?: Array<any>
+  topLeft?: Array<any>;
+  topRight?: Array<any>;
+  bottomLeft?: Array<any>;
+  bottomRight?: Array<any>;
 }
 
 export interface IMsgInstance extends ComponentInternalInstance {
-  uid: number
-  el: HTMLElement
+  uid: number;
+  el: HTMLElement;
 }
 
 export interface IMsgInst {
-  message: IMsgInstance
-  close: Function
-  update: Function
+  message: IMsgInstance;
+  close: Function;
+  update: Function;
 }

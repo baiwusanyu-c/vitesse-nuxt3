@@ -1,12 +1,19 @@
-import { computed, watch, defineComponent, ref, getCurrentInstance, onMounted } from 'vue'
-import { IMsg } from './be-message-box-type'
-import { dragDirective } from '../../../utils/direactives/drag-directives'
-import BeIcon from '../../svg-icon'
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
+import { dragDirective } from "../../../utils/direactives/drag-directives";
+import BeIcon from "../../svg-icon";
+import type { IMsg } from "./be-message-box-type";
 export default defineComponent({
-  name: 'BeMessageBox',
+  name: "BeMessageBox",
   directives: { drag: dragDirective },
   components: {
-    //'be-icon': defineAsyncComponent(() => import('../../svg-icon')),
+    // 'be-icon': defineAsyncComponent(() => import('../../svg-icon')),
     BeIcon,
   },
   props: {
@@ -15,7 +22,7 @@ export default defineComponent({
      */
     titles: {
       type: String,
-      default: '',
+      default: "",
     },
     /**
      * 是否显示(完成)
@@ -29,7 +36,7 @@ export default defineComponent({
      */
     customClass: {
       type: String,
-      default: '',
+      default: "",
     },
     /**
      * 是否开启遮罩层 (完成)
@@ -44,7 +51,7 @@ export default defineComponent({
      */
     msgType: {
       type: String,
-      default: 'info',
+      default: "info",
     },
     /**
      * 底部类型 (完成)
@@ -52,7 +59,7 @@ export default defineComponent({
      */
     footerType: {
       type: String,
-      default: 'center',
+      default: "center",
     },
     /**
      * 底部渲染
@@ -107,11 +114,11 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const internalInstance = getCurrentInstance() as IMsg
-    const _uid = internalInstance.uid
-    const show = ref(props.isShow)
+    const internalInstance = getCurrentInstance() as IMsg;
+    const _uid = internalInstance.uid;
+    const show = ref(props.isShow);
 
-    /************************************** 事件方法相关 ******************************/
+    /** ************************************ 事件方法相关 ******************************/
     /**
      * 关闭方法，销毁组件
      */
@@ -119,99 +126,117 @@ export default defineComponent({
       /** close事件
        * @event close
        */
-      props.onClose && props.onClose()
-    }
+      props.onClose && props.onClose();
+    };
     /**
      * 确认按钮方法
      */
     const confirmFunc = (): void => {
       // this.$selfEvent.confirm && this.$selfEvent.confirm()
-      props.onConfirm && props.onConfirm()
-      show.value = false
-    }
-    /************************************** 监听设置遮罩 ******************************/
-    const dialogModels = ref('')
+      props.onConfirm && props.onConfirm();
+      show.value = false;
+    };
+    /** ************************************ 监听设置遮罩 ******************************/
+    const dialogModels = ref("");
     /**
      * 监听设置遮罩
      */
-    const openModal = computed(() => props.isOpenModal)
-    watch(openModal, val => {
-      if (val) {
-        dialogModels.value = 'be-modal'
-      } else {
-        dialogModels.value = ''
-      }
-    })
-    /************************************** 样式设置相关 ******************************/
-    const containerClass = ref('')
-    const containerstyle = computed(() => containerClass.value)
+    const openModal = computed(() => props.isOpenModal);
+    watch(openModal, (val) => {
+      if (val) dialogModels.value = "be-modal";
+      else dialogModels.value = "";
+    });
+    /** ************************************ 样式设置相关 ******************************/
+    const containerClass = ref("");
+    const containerstyle = computed(() => containerClass.value);
     /**
      * 设置动画、样式类
      */
     const setAnimate = (): void => {
-      const containerCls = `be-message-box--container`
-      const animateClass = ' be-fadeOut'
-      containerClass.value = containerCls + animateClass
+      const containerCls = "be-message-box--container";
+      const animateClass = " be-fadeOut";
+      containerClass.value = containerCls + animateClass;
       setTimeout(() => {
-        containerClass.value = containerCls + ' be-fadeIn'
-      }, 100)
-    }
+        containerClass.value = `${containerCls} be-fadeIn`;
+      }, 100);
+    };
 
     onMounted((): void => {
-      if (props.isOpenModal) {
-        dialogModels.value = 'be-modal'
-      }
-      setAnimate()
-    })
+      if (props.isOpenModal) dialogModels.value = "be-modal";
+
+      setAnimate();
+    });
     return () => {
       if (show.value) {
         return (
           <div
-            class={`be-message-box be-message-box__${props.msgType} ${dialogModels.value} ${props.customClass}`}>
+            className={`be-message-box be-message-box__${props.msgType} ${dialogModels.value} ${props.customClass}`}
+          >
             <div
-              class={containerstyle.value}
+              className={containerstyle.value}
               v-drag={{ isDrag: props.isDrag }}
-              id={`be_message_box_container${_uid}`}>
-              <div class="be-message-box--title">
-                <div class="be-message-box--head" id={`be_message_box_head${_uid}`}>
+              id={`be_message_box_container${_uid}`}
+            >
+              <div className="be-message-box--title">
+                <div
+                  className="be-message-box--head"
+                  id={`be_message_box_head${_uid}`}
+                >
                   <div>
                     {props.iconPreRender ? (
                       props.iconPreRender()
                     ) : (
-                      <be-icon icon={`${props.msgType}`} class={`icon-${props.msgType}`}></be-icon>
+                      <be-icon
+                        icon={`${props.msgType}`}
+                        class={`icon-${props.msgType}`}
+                      ></be-icon>
                     )}
-                    <span class={`text-${props.msgType}`}>{props.titles}</span>
+                    <span className={`text-${props.msgType}`}>
+                      {props.titles}
+                    </span>
                   </div>
-                  {/**@slot 弹窗头部按钮**/}
-                  <div class="be-message-box--head-close">
+                  {/** @slot 弹窗头部按钮**/}
+                  <div className="be-message-box--head-close">
                     {props.iconNextRender ? (
-                      <div onClick={() => close()}>{props.iconNextRender()}</div>
+                      <div onClick={() => close()}>
+                        {props.iconNextRender()}
+                      </div>
                     ) : (
-                      <be-icon icon="deleteIc" onClick={() => close()}></be-icon>
+                      <be-icon
+                        icon="deleteIc"
+                        onClick={() => close()}
+                      ></be-icon>
                     )}
                   </div>
                 </div>
               </div>
-              {/**@slot 弹窗主体**/}
-              <div class="be-message-box--body">{props.bodyRender ? props.bodyRender() : ''}</div>
-              {/**@slot 弹窗底部**/}
-              <div class={`be-message-box--footer be-message-box--footer__${props.footerType}`}>
+              {/** @slot 弹窗主体**/}
+              <div className="be-message-box--body">
+                {props.bodyRender ? props.bodyRender() : ""}
+              </div>
+              {/** @slot 弹窗底部**/}
+              <div
+                className={`be-message-box--footer be-message-box--footer__${props.footerType}`}
+              >
                 {props.footerRender ? (
-                  <div onClick={() => confirmFunc()}>{props.footerRender()}</div>
+                  <div onClick={() => confirmFunc()}>
+                    {props.footerRender()}
+                  </div>
                 ) : (
                   <button
-                    class={`be-button be-button__mini be-button__${props.msgType} ${
-                      props.msgType === 'info' ? 'border' : ''
-                    }`}
-                    onClick={() => confirmFunc()}>
+                    className={`be-button be-button__mini be-button__${
+                      props.msgType
+                    } ${props.msgType === "info" ? "border" : ""}`}
+                    onClick={() => confirmFunc()}
+                  >
                     知道了
                   </button>
                 )}
               </div>
             </div>
           </div>
-        )
+        );
       }
-    }
+    };
   },
-})
+});
