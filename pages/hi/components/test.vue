@@ -6,34 +6,52 @@
 */
 <script lang="ts" setup>
 import {
-  // BeIcon,
+   BeIcon,
   BeButton,
-  // BeProgress,
-  // BeEllipsis,
-  // BeMsg,
-  // BeMessage,
-  //  BeTag,
+  BeProgress,
+  BeEllipsis,
+  BeMsg,
+  BeMessage,
+  BeTag,
   BePopover,
   BeTooltip,
 } from '../../../components/be-ui'
-/*
- import {
-     ElButton,
-     ElConfigProvider,
-     ElDatePicker,
-     ElDropdown,
-     ElDropdownItem,
-     ElDropdownMenu,
-     ElIcon,
-     ElMessage,
- } from 'element-plus' */
+import {onMounted,h} from "vue";
+import useTextTsx from '../../../composables/tesxTsx'
+const message = BeMessage.service
+const {msgBox}  = useTextTsx()
+const test = ():void =>{
+    message({
+        customClass: 'className',
+        titles: 'info',
+        duration: 2500,
+        offsetTop: 80,
+        close: true,
+        iconPreRender: undefined,
+        closeRender: undefined,
+        compType: ''
+    })
+    msgBox('testmsgBox','testmsgBox','testmsgBox')
+}
+onMounted(()=>{
+    test()
+})
 </script>
 
 <template>
   <div class="test_t">
     <div class="cc">
-      test_t
-      <be-button type="success">
+        <be-icon icon="search"></be-icon>
+        <be-progress percent="30" status="normal" >
+        </be-progress>
+        <be-tag size="mini" customClass="mr-4">
+            杨柳乱成丝
+        </be-tag>
+        <be-ellipsis
+            text="清平乐·年年雪里 年年雪里，常插梅花醉。挼尽梅花无好意"
+            content="年年雪里，常插梅花醉。挼尽梅花无好意，赢得满衣清泪。今年海角天涯，萧萧两鬓生华。看取晚来风势，故应难看梅花。">
+        </be-ellipsis>
+      <be-button type="success" @click="test">
         BeButton
       </be-button>
       <client-only>
@@ -49,13 +67,13 @@ import {
           <p>发现沿途寻找的快乐</p>
         </be-popover>
       </client-only>
-      <client-only>
+
         <be-tooltip content="那夜星空灿烂 你轻靠我的肩膀">
           <be-button style="margin-right: 5px" custom-class="sm:mb-4" type="info" bordered>
             弹唱
           </be-button>
         </be-tooltip>
-      </client-only>
+
     </div>
   </div>
 </template>

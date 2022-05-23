@@ -1,13 +1,12 @@
-<script lang="ts">
-import { computed, defineComponent, getCurrentInstance, onMounted, ref, watch } from 'vue'
+import { computed, watch, defineComponent, ref, getCurrentInstance, onMounted } from 'vue'
+import { IMsg } from './be-message-box-type'
 import { dragDirective } from '../../../utils/direactives/drag-directives'
-import { BeIcon } from '../../svg-icon'
-import type { IMsg } from './be-message-box-type'
-
+import BeIcon from '../../svg-icon'
 export default defineComponent({
   name: 'BeMessageBox',
   directives: { drag: dragDirective },
   components: {
+    //'be-icon': defineAsyncComponent(() => import('../../svg-icon')),
     BeIcon,
   },
   props: {
@@ -109,10 +108,10 @@ export default defineComponent({
   },
   setup(props) {
     const internalInstance = getCurrentInstance() as IMsg
-    const _uid = internalInstance?.uid
+    const _uid = internalInstance.uid
     const show = ref(props.isShow)
 
-    /** ************************************ 事件方法相关 ******************************/
+    /************************************** 事件方法相关 ******************************/
     /**
      * 关闭方法，销毁组件
      */
@@ -130,117 +129,89 @@ export default defineComponent({
       props.onConfirm && props.onConfirm()
       show.value = false
     }
-    /** ************************************ 监听设置遮罩 ******************************/
+    /************************************** 监听设置遮罩 ******************************/
     const dialogModels = ref('')
     /**
      * 监听设置遮罩
      */
     const openModal = computed(() => props.isOpenModal)
-    watch(openModal, (val) => {
-      if (val)
+    watch(openModal, val => {
+      if (val) {
         dialogModels.value = 'be-modal'
-      else
+      } else {
         dialogModels.value = ''
+      }
     })
-    /** ************************************ 样式设置相关 ******************************/
+    /************************************** 样式设置相关 ******************************/
     const containerClass = ref('')
     const containerstyle = computed(() => containerClass.value)
     /**
      * 设置动画、样式类
      */
     const setAnimate = (): void => {
-      const containerCls = 'be-message-box--container'
+      const containerCls = `be-message-box--container`
       const animateClass = ' be-fadeOut'
       containerClass.value = containerCls + animateClass
       setTimeout(() => {
-        containerClass.value = `${containerCls} be-fadeIn`
+        containerClass.value = containerCls + ' be-fadeIn'
       }, 100)
     }
 
     onMounted((): void => {
-      if (props.isOpenModal)
+      if (props.isOpenModal) {
         dialogModels.value = 'be-modal'
-
+      }
       setAnimate()
     })
-    return {
-      show,
-      _uid,
-      dialogModels,
-      confirmFunc,
-      close,
+    return () => {
+      if (show.value) {
+        return (
+          <div
+            class={`be-message-box be-message-box__${props.msgType} ${dialogModels.value} ${props.customClass}`}>
+            <div
+              class={containerstyle.value}
+              v-drag={{ isDrag: props.isDrag }}
+              id={`be_message_box_container${_uid}`}>
+              <div class="be-message-box--title">
+                <div class="be-message-box--head" id={`be_message_box_head${_uid}`}>
+                  <div>
+                    {props.iconPreRender ? (
+                      props.iconPreRender()
+                    ) : (
+                      <be-icon icon={`${props.msgType}`} class={`icon-${props.msgType}`}></be-icon>
+                    )}
+                    <span class={`text-${props.msgType}`}>{props.titles}</span>
+                  </div>
+                  {/**@slot 弹窗头部按钮**/}
+                  <div class="be-message-box--head-close">
+                    {props.iconNextRender ? (
+                      <div onClick={() => close()}>{props.iconNextRender()}</div>
+                    ) : (
+                      <be-icon icon="deleteIc" onClick={() => close()}></be-icon>
+                    )}
+                  </div>
+                </div>
+              </div>
+              {/**@slot 弹窗主体**/}
+              <div class="be-message-box--body">{props.bodyRender ? props.bodyRender() : ''}</div>
+              {/**@slot 弹窗底部**/}
+              <div class={`be-message-box--footer be-message-box--footer__${props.footerType}`}>
+                {props.footerRender ? (
+                  <div onClick={() => confirmFunc()}>{props.footerRender()}</div>
+                ) : (
+                  <button
+                    class={`be-button be-button__mini be-button__${props.msgType} ${
+                      props.msgType === 'info' ? 'border' : ''
+                    }`}
+                    onClick={() => confirmFunc()}>
+                    知道了
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )
+      }
     }
   },
 })
-</script>
-
-<template>
-  <div
-    v-if="show"
-    :class="`be-message-box be-message-box__${msgType} ${dialogModels} ${customClass}`"
-  >
-    <div
-      :id="`be_message_box_container${_uid}`"
-      v-drag="{ isDrag }"
-      class="{containerstyle.value}"
-    >
-      <div class="be-message-box--title">
-        <div
-          :id="`be_message_box_head${_uid}`"
-          class="be-message-box--head"
-        >
-          <div v-if="iconPreRender">
-            {{ iconPreRender() }}
-            <span :class="`text-${msgType}`">{{ titles }}</span>
-          </div>
-          <div v-if="!iconPreRender">
-            <BeIcon
-              :icon="`${msgType}`"
-              :class="`icon-${msgType}`"
-            />
-            <span :class="`text-${msgType}`">{{ titles }}</span>
-          </div>
-
-          <div class="be-message-box--head-close">
-            <div
-              v-if="iconNextRender"
-              @click="close"
-            >
-              {{ iconNextRender() }}
-            </div>
-            <BeIcon
-              v-if="!iconNextRender"
-              icon="deleteIc"
-              @click="close"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div class="be-message-box--body">
-        {{ bodyRender ? bodyRender() : '' }}
-      </div>
-
-      <div :class="`be-message-box--footer be-message-box--footer__${footerType}`">
-        <div
-          v-if="footerRender"
-          @click="confirmFunc()"
-        >
-          {{ footerRender() }}
-        </div>
-        <div v-if="!footerRender">
-          <button
-            :class="`be-button be-button__mini be-button__${msgType} ${msgType === 'info' ? 'border' : ''}`"
-            @click="confirmFunc()"
-          >
-            知道了
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<style scoped>
-
-</style>

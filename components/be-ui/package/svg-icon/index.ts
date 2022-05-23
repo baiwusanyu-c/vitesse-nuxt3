@@ -3,15 +3,15 @@ import { defineComponent } from 'vue'
 import { withInstall } from '../../utils/with-install'
 import SvgIcon from './src/be-icon.vue'
 import { createCustom } from './src/be-custom-icon'
-// import { SvgDom } from '../../utils/create-svg'
+ import { SvgDom } from '../../utils/create-svg'
 
 /**
  * 初始化图标，生成svgDom
  */
-// const initIcon = (): void => {
-//   new SvgDom()
-// }
-// initIcon()
+ const initIcon = (): void => {
+   new SvgDom()
+ }
+ initIcon()
 
 /**
  * 组件装载方法

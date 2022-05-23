@@ -15,8 +15,8 @@ export interface INMsgOption {
   footerType?: string
   footerRender: any
   bodyRender: any
-  iconPreRender: any
-  iconNextRender: any
+  iconPreRender?: any
+  iconNextRender?: any
   isOpenModal?: boolean
   onConfirm?: () => void
   onClose?: () => void
