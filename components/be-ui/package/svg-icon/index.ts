@@ -9,7 +9,9 @@ import { createCustom } from './src/be-custom-icon'
  * 初始化图标，生成svgDom
  */
  const initIcon = (): void => {
-   new SvgDom()
+  if (!import.meta.env.SSR) {
+    new SvgDom()
+  }
  }
  initIcon()
 

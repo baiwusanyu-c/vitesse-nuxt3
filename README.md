@@ -85,5 +85,5 @@ husky ⚡
 commitlint ⚡  
 element plus ⚡  
 be-ui  （暂时不支持ssr）  
-icon 插件是否生效  
+icon ⚡
 fetch 封装 🔥  

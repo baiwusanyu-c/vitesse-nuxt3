@@ -22,7 +22,6 @@ const componentRender = (option: INMsgOption): void => {
     close && close()
   }
   option.onClose = onCloseFunc
-  debugger
   const instanceInner: VNode = createVNode(beMsgComponents, { ...option })
   instanceInner.props && (instanceInner.props.isShow = true)
   render(instanceInner, elm)

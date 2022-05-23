@@ -36,6 +36,7 @@ export class SvgDom {
   }
 
   appendToBody(): void {
-    document.body.insertBefore(this.svgElm, document.body.firstElementChild)
+      document.body.insertBefore(this.svgElm, document.body.firstElementChild)
+
   }
 }

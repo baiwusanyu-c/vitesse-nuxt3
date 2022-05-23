@@ -42,7 +42,8 @@ onMounted(()=>{
   <div class="test_t">
     <div class="cc">
         <be-icon icon="search"></be-icon>
-        <be-progress percent="30" status="normal" >
+        <be-icon icon="iconHecoEagleG"></be-icon>
+        <be-progress :percent="30" status="normal" >
         </be-progress>
         <be-tag size="mini" customClass="mr-4">
             杨柳乱成丝

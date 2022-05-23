@@ -1,5 +1,7 @@
 <script setup>
 // element plus 必须在入口组件注入这个 ID_INJECTION_KEY
+import svgDict from './utils/svg-dict'
+import { loadSvg } from 'vite-plugin-svg-transform-script'
 import { ID_INJECTION_KEY } from 'element-plus'
 provide(ID_INJECTION_KEY, {
   prefix: 100,
@@ -13,6 +15,9 @@ useHead({
     },
   ],
 })
+if (!import.meta.env.SSR) {
+    loadSvg(svgDict)
+}
 </script>
 
 <template>

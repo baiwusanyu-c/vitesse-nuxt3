@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt'
+import { transformScript } from 'vite-plugin-svg-transform-script'
 const lifecycle = process.env.npm_lifecycle_event
 export default defineNuxtConfig({
   modules: [
@@ -29,4 +30,15 @@ export default defineNuxtConfig({
     shim: false,
   },
   components: true,
+  vite: {
+    plugins: [
+      transformScript({
+        input: './icon/',
+        output: './utils/',
+        name: 'svg-dict',
+        type: 'ts',
+        format: 'default',
+      }),
+    ],
+  },
 })

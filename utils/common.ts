@@ -1,5 +1,4 @@
 import { isArray, isObject, toRawType } from '@vue/shared'
-// @ts-expect-error
 // import { BeMessage } from '../../public/be-ui/be-ui.es'
 
 export type IOption = Record<string, any>
@@ -50,24 +49,7 @@ export function isEmpty(val: unknown) {
 // 清除定时器
 export const clearTimer = (timer: any) => {
   clearTimeout(timer.value)
-  // @ts-expect-error
   timer.value = null
-}
-// 防抖
-export function debounce(func: Function, wait: number) {
-  let timeout: any
-  return function (...params: any[]) {
-    const args = [...params]
-    if (timeout)
-      clearTimeout(timeout)
-    const callNow = !timeout
-    timeout = setTimeout(() => {
-      // @ts-expect-error
-      timeout = null
-    }, wait)
-    if (callNow)
-      func.apply(this, args)
-  }
 }
 
 /**

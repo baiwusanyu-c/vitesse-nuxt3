@@ -13,7 +13,8 @@
   "dependencies": {
     "@popperjs/core": "^2.11.5",
     "element-plus": "^2.2.0",
-    "vue": "3.2.33"
+    "vue": "3.2.33",
+    "vite-plugin-svg-transform-script": "1.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.23.0",

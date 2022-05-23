@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>文件</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="交易分析详情" transform="translate(-292.000000, -387.000000)" fill-rule="nonzero">
+            <g id="编组-5" transform="translate(256.000000, 348.000000)">
+                <g id="文件" transform="translate(36.000000, 39.000000)">
+                    <rect id="矩形" fill="#000000" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                    <path d="M15.0171429,0 L22.2857143,7.26857142 L22.2857143,24 L1.71428571,24 L1.71428571,0 L15.0171429,0 Z M13.5942857,3.42857142 L5.14285713,3.42857142 L5.14285713,20.5714286 L18.8571429,20.5714286 L18.8571429,8.69142858 L13.5942857,3.42857142 Z M15.4285714,13.7142857 L15.4285714,15.4285714 L8.57142858,15.4285714 L8.57142858,13.7142857 L15.4285714,13.7142857 Z M13.7142857,10.2857143 L13.7142857,12 L8.57142858,12 L8.57142858,10.2857143 L13.7142857,10.2857143 Z" id="形状结合" fill="#333333"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

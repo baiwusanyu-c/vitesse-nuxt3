@@ -176,16 +176,16 @@ export default defineComponent({
           {...ctx.attrs}
           style={btnStyle.value}
           id={`be_button_${uid.value}`}
-          className={`
+          class={`
                     be-button 
                     be-button__inner ${disabledStyle.value} 
                     be-button__${props.size} 
                     be-button__${props.type}${borderStyle.value} 
                     ${props.customClass}`}
           disabled={props.disabled || props.loading}>
-          <div className="be-button--body" style="margin: 0 auto;display: flex">
+          <div class="be-button--body" style="margin: 0 auto;display: flex">
             {prevIconRender()}
-            <div className="be-button--slot">{ctx.slots.default && ctx.slots.default()}</div>
+            <div class="be-button--slot">{ctx.slots.default && ctx.slots.default()}</div>
             {nextIconRender()}
           </div>
         </button>
