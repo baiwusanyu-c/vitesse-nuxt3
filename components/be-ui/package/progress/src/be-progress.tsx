@@ -219,7 +219,7 @@ export default defineComponent({
       ) {
         return (
           <div
-            className={`
+            class={`
                                              be-progress-line-path
                                              be-progress-line-path__success
                                              ${
@@ -240,7 +240,7 @@ export default defineComponent({
       ) {
         return (
           <path
-            className="be-progress-circle__success"
+            class="be-progress-circle__success"
             d={trackPath.value}
             stroke={innerStyleTypeLineSuccess.value.color}
             fill="none"
@@ -284,25 +284,25 @@ export default defineComponent({
       const rightRender = internalInstance?.slots.default ? (
         internalInstance?.slots.default()
       ) : (
-        <span className="percent">{`${props.percent}%`}</span>
+        <span class="percent">{`${props.percent}%`}</span>
       );
       const centerRender = internalInstance?.slots.center ? (
         internalInstance?.slots.center()
       ) : (
-        <span className="percent">{`${props.percent}%`}</span>
+        <span class="percent">{`${props.percent}%`}</span>
       );
       return (
         <div
-          className={`${
+          class={`${
             props.type === "line"
               ? "be-progress"
               : "be-progress be-progress-circle-dashboard"
           }`}
         >
           {props.type === "line" ? (
-            <div className="be-progress-body be-progress-line">
+            <div class="be-progress-body be-progress-line">
               <div
-                className={`
+                class={`
                                         be-progress-line--track
                                         ${
                                           props.strokeLinecap === "round"
@@ -312,7 +312,7 @@ export default defineComponent({
                 style={`background-color:${props.trailColor}`}
               >
                 <div
-                  className={`
+                  class={`
                                             be-progress-line-path  
                                             ${
                                               props.strokeLinecap === "round"
@@ -338,12 +338,12 @@ export default defineComponent({
           )}
           {props.type === "circle" || props.type === "dashboard" ? (
             <div
-              className="be-progress-body be-progress-circle"
+              class="be-progress-body be-progress-circle"
               style={setCircleContainerStyle.value}
             >
               <svg viewBox="0 0 100 100">
                 <path
-                  className="be-progress-circle__track"
+                  class="be-progress-circle__track"
                   d={trackPath.value}
                   strokeLinecap={props.strokeLinecap as "round" | "square"}
                   stroke={props.trailColor ? props.trailColor : "#f5f5f5"}
@@ -352,7 +352,7 @@ export default defineComponent({
                   style={trailPathStyle.value}
                 ></path>
                 <path
-                  className="be-progress-circle__path"
+                  class="be-progress-circle__path"
                   d={trackPath.value}
                   stroke={circlePathColor.value}
                   fill="none"
@@ -366,7 +366,7 @@ export default defineComponent({
                                     */}
                 {renderSuccess()}
               </svg>
-              <div className="be-progress-circle--text">
+              <div class="be-progress-circle--text">
                 {/* slot - center */}
                 {props.showInfo ? centerRender : ""}
               </div>

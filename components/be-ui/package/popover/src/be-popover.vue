@@ -294,7 +294,7 @@ export default defineComponent({
         const triggerElm: string | HTMLElement = trigger || props.triggerElm;
         if (triggerElm) {
           triggerDom = isString(triggerElm)
-            ? document.getElementById(triggerElm)
+            ? document.getElementById(triggerElm as string)
             : triggerElm;
           computeDom =
             matchDom(internalInstance.refs.bePopoverTrigger) ||

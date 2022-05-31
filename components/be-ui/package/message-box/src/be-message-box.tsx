@@ -170,16 +170,16 @@ export default defineComponent({
       if (show.value) {
         return (
           <div
-            className={`be-message-box be-message-box__${props.msgType} ${dialogModels.value} ${props.customClass}`}
+            class={`be-message-box be-message-box__${props.msgType} ${dialogModels.value} ${props.customClass}`}
           >
             <div
-              className={containerstyle.value}
+              class={containerstyle.value}
               v-drag={{ isDrag: props.isDrag }}
               id={`be_message_box_container${_uid}`}
             >
-              <div className="be-message-box--title">
+              <div class="be-message-box--title">
                 <div
-                  className="be-message-box--head"
+                  class="be-message-box--head"
                   id={`be_message_box_head${_uid}`}
                 >
                   <div>
@@ -191,12 +191,12 @@ export default defineComponent({
                         class={`icon-${props.msgType}`}
                       ></be-icon>
                     )}
-                    <span className={`text-${props.msgType}`}>
+                    <span class={`text-${props.msgType}`}>
                       {props.titles}
                     </span>
                   </div>
                   {/** @slot 弹窗头部按钮**/}
-                  <div className="be-message-box--head-close">
+                  <div class="be-message-box--head-close">
                     {props.iconNextRender ? (
                       <div onClick={() => close()}>
                         {props.iconNextRender()}
@@ -211,12 +211,12 @@ export default defineComponent({
                 </div>
               </div>
               {/** @slot 弹窗主体**/}
-              <div className="be-message-box--body">
+              <div class="be-message-box--body">
                 {props.bodyRender ? props.bodyRender() : ""}
               </div>
               {/** @slot 弹窗底部**/}
               <div
-                className={`be-message-box--footer be-message-box--footer__${props.footerType}`}
+                class={`be-message-box--footer be-message-box--footer__${props.footerType}`}
               >
                 {props.footerRender ? (
                   <div onClick={() => confirmFunc()}>
@@ -224,7 +224,7 @@ export default defineComponent({
                   </div>
                 ) : (
                   <button
-                    className={`be-button be-button__mini be-button__${
+                    class={`be-button be-button__mini be-button__${
                       props.msgType
                     } ${props.msgType === "info" ? "border" : ""}`}
                     onClick={() => confirmFunc()}
